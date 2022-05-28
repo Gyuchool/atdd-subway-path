@@ -50,7 +50,7 @@ class PathTest {
 
         //when
         PathFinder path = new SubwayGraph(List.of(section1To2, section2To3, section3To5));
-        List<Station> stations = path.getPath(station1, station5, 0, 50).getStations();
+        List<Station> stations = path.getPath(station1, station5).getStations();
 
         //then
         assertThat(stations).containsExactly(station1, station2, station3, station5);
@@ -74,7 +74,7 @@ class PathTest {
 
         //when
         PathFinder path = new SubwayGraph(List.of(section1To2, section2To3, section3To5, section2To4, section4To5));
-        List<Station> stations = path.getPath(station1, station5, 0, 50).getStations();
+        List<Station> stations = path.getPath(station1, station5).getStations();
 
         //then
         assertThat(stations).containsExactly(station1, station2, station4, station5);
@@ -104,7 +104,7 @@ class PathTest {
         PathFinder path = new SubwayGraph(List.of(
                 section1To2, section2To3, section3To5,
                 section2To4, section4To5, section2To5));
-        List<Station> stations = path.getPath(station1, station5, 0, 50).getStations();
+        List<Station> stations = path.getPath(station1, station5).getStations();
 
         //then
         assertThat(stations).containsExactly(station1, station2, station5);

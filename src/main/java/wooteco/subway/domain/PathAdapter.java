@@ -1,8 +1,4 @@
-package wooteco.subway.infrastructure;
-
-import wooteco.subway.domain.Path;
-import wooteco.subway.domain.PathFinder;
-import wooteco.subway.domain.Station;
+package wooteco.subway.domain;
 
 public class PathAdapter {
     private final PathFinder pathFinder;
@@ -11,8 +7,8 @@ public class PathAdapter {
         this.pathFinder = pathFinder;
     }
 
-    public Path getShortestPath(final Station source, final Station target, final int fare, final int age) {
-        return pathFinder.getPath(source, target, fare, age);
+    public Path getShortestPath(final Station source, final Station target) {
+        return pathFinder.getPath(source, target);
     }
 
     public Long getExpensiveLineId(final Station source, final Station target) {

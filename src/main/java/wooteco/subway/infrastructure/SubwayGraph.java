@@ -37,13 +37,12 @@ public class SubwayGraph implements PathFinder {
     }
 
     @Override
-    public Path getPath(final Station source, final Station target, final int extraFare, final int age) {
+    public Path getPath(final Station source, final Station target) {
         validateExistsPath(source, target);
         List<Station> stations = graph.getPath(source, target).getVertexList();
         int distance = (int) graph.getPathWeight(source, target);
-        Fare fare = new AgeDecorator(new DistanceDecorator(new BaseFare(extraFare), distance), age);
-        double price = fare.calculateExtraFare();
-        return new Path(stations, distance, price);
+
+        return new Path(stations, distance);
     }
 
     private void validateExistsPath(final Station source, final Station target) {

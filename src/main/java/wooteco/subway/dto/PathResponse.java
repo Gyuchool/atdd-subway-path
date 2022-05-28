@@ -14,11 +14,11 @@ public class PathResponse {
     private PathResponse() {
     }
 
-    public static PathResponse from(final Path path) {
+    public static PathResponse from(final Path path, final double fare) {
         List<StationResponse> stationResponses = path.getStations().stream()
                 .map(StationResponse::from)
                 .collect(Collectors.toList());
-        return new PathResponse(stationResponses, path.getDistance(), path.getFare());
+        return new PathResponse(stationResponses, path.getDistance(), fare);
     }
 
     public PathResponse(final List<StationResponse> stations, final int distance, final double fare) {

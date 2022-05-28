@@ -12,7 +12,7 @@ import wooteco.subway.domain.Station;
 import wooteco.subway.dto.PathResponse;
 import wooteco.subway.exception.NoSuchLineException;
 import wooteco.subway.exception.NoSuchStationException;
-import wooteco.subway.infrastructure.PathAdapter;
+import wooteco.subway.domain.PathAdapter;
 import wooteco.subway.infrastructure.SubwayGraph;
 
 @Transactional(readOnly = true)
@@ -40,8 +40,8 @@ public class PathService {
         Long lineId = pathAdapter.getExpensiveLineId(sourceStation, targetStation);
         Line line = lineDao.findById(lineId)
                 .orElseThrow(() -> new NoSuchLineException(lineId));
-        Path path = pathAdapter.getShortestPath(sourceStation, targetStation, line.getExtraFare(), age);
+        Path path = pathAdapter.getShortestPath(sourceStation, targetStation);
 
-        return PathResponse.from(path);
+        return PathResponse.from(path, path.calculateFare(line.getExtraFare(), age));
     }
 }
